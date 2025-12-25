@@ -1,0 +1,151 @@
+# Frontend Dashboard - IoT Smart Parking System
+
+## Overview
+
+The frontend dashboard provides a real-time web interface for monitoring parking spaces, making reservations, and viewing analytics. Built with React and modern web technologies.
+
+## Features
+
+- **Real-time Parking Map**: Live visualization of parking spot availability
+- **Interactive Dashboard**: Color-coded parking spots (green=available, red=occupied, yellow=reserved)
+- **Reservation System**: Book and pay for parking spots
+- **Analytics Dashboard**: Occupancy trends, peak hours, revenue statistics
+- **Mobile Responsive**: Works on desktop, tablet, and mobile devices
+- **WebSocket Integration**: Real-time updates without page refresh
+
+## Technology Stack
+
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Context + useReducer
+- **Real-time**: Socket.IO client
+- **HTTP Client**: Axios
+- **Payment**: Stripe Elements
+- **Charts**: Chart.js with react-chartjs-2
+- **Icons**: Heroicons
+- **Build Tool**: Vite
+
+## Project Structure
+
+```
+frontend/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── Dashboard/
+│   │   ├── ParkingMap/
+│   │   ├── Reservations/
+│   │   ├── Analytics/
+│   │   └── Common/
+│   ├── hooks/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+├── package.json
+└── vite.config.ts
+```
+
+## Installation
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Environment Configuration**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
+
+3. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for Production**
+   ```bash
+   npm run build
+   ```
+
+## Environment Variables
+
+Create `.env.local` file:
+```
+VITE_API_BASE_URL=http://localhost:5000
+VITE_WEBSOCKET_URL=http://localhost:5000
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+## Components
+
+### Dashboard
+- Main dashboard with overview statistics
+- Real-time occupancy metrics
+- Quick actions and navigation
+
+### ParkingMap
+- Interactive grid/map view of parking spots
+- Color-coded status indicators
+- Click to view spot details or make reservation
+
+### Reservations
+- Create new reservations
+- View existing reservations
+- Payment processing with Stripe
+
+### Analytics
+- Occupancy trends over time
+- Peak hours analysis
+- Revenue statistics
+- Predictive analytics
+
+## API Integration
+
+The frontend communicates with the backend through:
+- REST API calls for data operations
+- WebSocket connections for real-time updates
+- Stripe API for payment processing
+
+## Real-time Updates
+
+WebSocket events handled:
+- `spot_status_changed`: Update parking spot status
+- `spot_reserved`: Handle new reservations
+- `occupancy_update`: Update overall statistics
+
+## Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run e2e tests
+npm run test:e2e
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## Deployment
+
+### Development
+```bash
+npm run dev
+```
+
+### Production Build
+```bash
+npm run build
+npm run preview
+```
+
+### Docker Deployment
+```bash
+docker build -t parking-frontend .
+docker run -p 3000:3000 parking-frontend
+```
